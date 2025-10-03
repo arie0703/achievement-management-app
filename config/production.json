@@ -1,0 +1,28 @@
+{
+  "environment": "production",
+  "aws": {
+    "region": "ap-northeast-1",
+    "dynamodb_endpoint": "",
+    "profile": ""
+  },
+  "tables": {
+    "achievements": "achievement-management-prod-achievements",
+    "rewards": "achievement-management-prod-rewards",
+    "current_points": "achievement-management-prod-current_points",
+    "reward_history": "achievement-management-prod-reward_history"
+  },
+  "retry": {
+    "max_retries": 5,
+    "backoff_ms": 500
+  },
+  "server": {
+    "port": "8080",
+    "read_timeout": 120,
+    "write_timeout": 120
+  },
+  "logging": {
+    "level": "warn",
+    "format": "json",
+    "output": "stdout"
+  }
+}

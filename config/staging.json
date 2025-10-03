@@ -1,0 +1,28 @@
+{
+  "environment": "staging",
+  "aws": {
+    "region": "us-east-1",
+    "dynamodb_endpoint": "",
+    "profile": "staging"
+  },
+  "tables": {
+    "achievements": "staging-achievements",
+    "rewards": "staging-rewards",
+    "current_points": "staging-current-points",
+    "reward_history": "staging-reward-history"
+  },
+  "retry": {
+    "max_retries": 5,
+    "backoff_ms": 200
+  },
+  "server": {
+    "port": "8080",
+    "read_timeout": 60,
+    "write_timeout": 60
+  },
+  "logging": {
+    "level": "info",
+    "format": "json",
+    "output": "stdout"
+  }
+}

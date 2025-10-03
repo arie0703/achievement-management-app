@@ -1,0 +1,90 @@
+# Terraform関連
+*.tfstate
+*.tfstate.*
+*.tfvars.json
+*.tfplan
+*.tfplan.*
+.terraform/
+.terraform.lock.hcl
+terraform.tfstate.d/
+.terraformrc
+terraform.rc
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
+
+# Terraform plan files
+plan.out
+*.plan
+
+# Terraform environment files
+.env
+.env.local
+!.env.example
+backend.tf
+
+# Go言語関連
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, built with `go test -c`
+*.test
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+
+# Dependency directories (remove the comment below to include it)
+vendor/
+
+# Go workspace file
+go.work
+
+# Build output
+build/
+bin/
+dist/
+
+# IDE関連
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS関連
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Log files
+*.log
+logs/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+
+# AWS関連
+.aws/
+
+# その他の一般的な無視ファイル
+*.bak
+*.backup
+*.orig
+*.rej
+*.patch

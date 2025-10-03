@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  # DynamoDB Local for development
+  dynamodb-local:
+    image: amazon/dynamodb-local:latest
+    container_name: achievement-dynamodb
+    ports:
+      - "8000:8000"
+    command: [ "-jar", "DynamoDBLocal.jar", "-sharedDb", "-inMemory" ]
+    networks:
+      - achievement-network
+
+  # Achievement Management API
+  achievement-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: achievement-api
+    ports:
+      - "8080:8080"
+    environment:
+      - ENVIRONMENT=development
+      - AWS_REGION=ap-northeast-1
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - ACHIEVEMENTS_TABLE=achievement-management-sandbox-achievements
+      - REWARDS_TABLE=achievement-management-sandbox-rewards
+      - CURRENT_POINTS_TABLE=achievement-management-sandbox-current_points
+      - REWARD_HISTORY_TABLE=achievement-management-sandbox-reward_history
+      - LOG_LEVEL=debug
+      - LOG_FORMAT=json
+      - SERVER_PORT=8080
+    networks:
+      - achievement-network
+    volumes:
+      - ./logs:/app/logs
+    restart: unless-stopped
+
+  # DynamoDB Admin (optional web UI for DynamoDB Local)
+  dynamodb-admin:
+    image: aaronshaf/dynamodb-admin:latest
+    container_name: achievement-dynamodb-admin
+    ports:
+      - "8001:8001"
+    environment:
+      - DYNAMO_ENDPOINT=http://dynamodb-local:8000
+    depends_on:
+      - dynamodb-local
+    networks:
+      - achievement-network
+
+networks:
+  achievement-network:
+    driver: bridge
+
+volumes:
+  dynamodb-data:
